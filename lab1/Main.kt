@@ -1,5 +1,31 @@
-fun main() {
+import java.io.File
+import java.io.BufferedReader
 
+fun main() {
+    
+    // Lista para poder leer y recuperar los valores de los txts
+    var listaArchivo = mutableListOf<String>()
+    var numVertices : Int = 0
+    var numLados : Int = 0
+
+    //fun para leer y almacenar data de txts en forma de lista
+    fun leerArchivo (nombreArchivo : String): List<String> {
+        
+        File(nombreArchivo).useLines{ lines -> lines.forEach { listaArchivo.add(it) }}
+        
+        return listaArchivo
+    }
+
+
+    
+
+    leerArchivo("mini.txt")
+    println(listaArchivo)
+    numVertices = listaArchivo[0].toInt()
+    numLados = listaArchivo[1].toInt()
+    println("Numero de vertices : ${numVertices} ....... Numero de lados : ${numLados}")
+    
+ 
     val arcoPrueba = Arco(4,5)
     
     println("Procedemos con las pruebas de los metodos de arco: ")
