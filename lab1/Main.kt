@@ -6,7 +6,8 @@ fun main() {
     // Lista para poder leer y recuperar los valores de los txts
     var listaArchivo = mutableListOf<String>()
     var numVertices : Int 
-    var numLados : Int 
+    var numLados : Int
+    val listaArcos = mutableListOf<Arco>() 
     
 
     //fun para leer y almacenar data de txts en forma de lista
@@ -26,14 +27,16 @@ fun main() {
     numLados = listaArchivo[1].toInt()
     println("Numero de vertices : ${numVertices} ....... Numero de lados : ${numLados}")
     var listaLados = listaArchivo.subList(2, listaArchivo.size)
+    
     listaLados.forEach { 
         val ladoSinSeparador = it.split(" ")
         val newArco = Arco(ladoSinSeparador[0].toInt(),ladoSinSeparador[1].toInt())
-        println("este es cada lado : ${ladoSinSeparador}")
-        println("este es cada lado : ${newArco}")
+        listaArcos.add(newArco)
+        
     
     }
     println("Lista de lados del grafo: ${listaLados}");
+    println("estea es la lista de ARCOS  : ${listaArcos}")
 
 
     
