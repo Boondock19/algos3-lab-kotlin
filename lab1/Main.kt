@@ -12,8 +12,8 @@ fun main() {
     println("arco to string:")
     println(arcoPrueba.toString())
 
-    val aristaPrueba = Arista(4,5)
-    val aristaPrueba2 = Arista(5,8,3.0)
+    val aristaPrueba = Arista(4,5,5.0)
+    val aristaPrueba2 = Arista(5,8,0.0)
     
     println("Procedemos con las pruebas de los metodos de arista: ")
     println("Cualquiera de los dos vertices de la arista :") 

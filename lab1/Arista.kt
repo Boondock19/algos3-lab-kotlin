@@ -32,7 +32,7 @@ public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable
 
     // Retorna el peso del arco
     fun obtenerPeso() : Double {
-       public val aristaPeso = arista.third 
+
         return arista.third
     // Completar
     }
@@ -48,6 +48,7 @@ public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable
     // entonces retorna 0
      override fun compareTo(other: Arista): Int {
          val otherPeso = other.obtenerPeso();
+         val aristaPeso = this.obtenerPeso()
          if (aristaPeso > otherPeso) {
              return 1
          } else if (aristaPeso < otherPeso ) {
