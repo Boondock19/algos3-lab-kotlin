@@ -32,7 +32,7 @@ public class GrafoDirigido {
     constructor(nombreArchivo: String, conPeso: Boolean) {
         
         var flag = conPeso
-        println("PRINT DE CON PESO QUE ESTA EN FLAG:  ${flag}  ")
+        
         //fun para leer y almacenar data de txts en forma de lista
         
         File(nombreArchivo).useLines{ lines -> lines.forEach { this.listaArchivo.add(it) }}
@@ -46,7 +46,7 @@ public class GrafoDirigido {
         // Creamos una subLista para poder trabajar con los lados
         
         this.listaLados = listaArchivo.subList(2, listaArchivo.size)
-        print("Esta es la lista luego de manerar el sublist : ${this.listaLados}")
+        
         
 
         /** 
@@ -57,13 +57,13 @@ public class GrafoDirigido {
         if (flag) {
             this.listaLados.forEach { 
             val ladoSinSeparador = it.split(" ")
-            println("Lado sin separador : ${ladoSinSeparador}")
+            
             val newArco = Arco(ladoSinSeparador[0].toInt(),ladoSinSeparador[1].toInt(),ladoSinSeparador[2].toDouble())
             this.listaArcos.add(newArco)
-            println("PRINT DE LISTA ARCOS LUEGO DE CADA ITERACION DEL ARCHIVO CON PESO: ${this.listaArcos}")
+            
             }
         } else {
-            println("ESTA ENTRANDO EN EL ELSE LUEGO DEL TRUE Y POR ESO NO GUARDA")
+            
             this.listaLados.forEach { 
             val ladoSinSeparador = it.split(" ")
             val newArco = Arco(ladoSinSeparador[0].toInt(),ladoSinSeparador[1].toInt())
@@ -150,7 +150,7 @@ public class GrafoDirigido {
     // Retorna todos los lados del digrafo
     fun arcos() : Iterable<Arco> {
        var arcosIterables = this.listaArcos.asIterable()
-       // while ()
+       
        return arcosIterables
 	// completar
     }
