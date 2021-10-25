@@ -3,6 +3,9 @@
 public class Arco(val inicio: Int, val fin: Int, val peso: Double =0.0) {
 
     val arco = Triple(inicio,fin,peso)
+    val first = inicio
+    val second = fin
+    val arcoPeso = peso
 
     // Retorna el vértice inicial del arco o lado
     fun fuente() : Int {

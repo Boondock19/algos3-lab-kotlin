@@ -5,6 +5,9 @@
 public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable<Arista> {
 
     val arista = Triple(v,u,peso)
+    val first = v
+    val second = u
+    val aristaPeso = peso
     // Retorna cualquiera de los dos vértices del grafo
     fun cualquieraDeLosVertices() : Int {
         // Obtenemos un valor random entre 1 y 2 para seleccionar uno de los vertices
