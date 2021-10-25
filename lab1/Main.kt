@@ -31,6 +31,7 @@ fun main() {
     
     listaLados.forEach { 
         val ladoSinSeparador = it.split(" ")
+        print("Este el lado sin separar del main que si funciona : ${ladoSinSeparador}")
         val newArco = Arco(ladoSinSeparador[0].toInt(),ladoSinSeparador[1].toInt(),ladoSinSeparador[2].toDouble())
         listaArcos.add(newArco)
     }
@@ -71,7 +72,9 @@ fun main() {
 
     println("Creacion de la clase grafoDirigido Prueba: ")
     var grafoDirigidoPrueba = GrafoDirigido("mini.txt",false)
-    println("print del grafo dirigido creado con un txt: ${grafoDirigidoPrueba}")
+    println("print del grafo dirigido creado con un txt sin PESO: ${grafoDirigidoPrueba}")
+    var grafoDirigidoPrueba3 = GrafoDirigido("miniPeso.txt",true)
+    println("print del grafo dirigido creado con un txt con PESO: ${grafoDirigidoPrueba3}")
     var grafoDirigidoPrueba2 = GrafoDirigido(4)
     println("print del grafo dirigido creado un numero: ${grafoDirigidoPrueba2}")
     var arco1 = Arco(2,1)

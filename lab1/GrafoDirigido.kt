@@ -31,7 +31,8 @@ public class GrafoDirigido {
     // lados. Es false si el formato solo incluye los vértices de los lados.  
     constructor(nombreArchivo: String, conPeso: Boolean) {
         
-
+        var flag = conPeso
+        println("PRINT DE CON PESO QUE ESTA EN FLAG:  ${flag}  ")
         //fun para leer y almacenar data de txts en forma de lista
         
         File(nombreArchivo).useLines{ lines -> lines.forEach { this.listaArchivo.add(it) }}
@@ -45,6 +46,7 @@ public class GrafoDirigido {
         // Creamos una subLista para poder trabajar con los lados
         
         this.listaLados = listaArchivo.subList(2, listaArchivo.size)
+        print("Esta es la lista luego de manerar el sublist : ${this.listaLados}")
         
 
         /** 
@@ -52,29 +54,28 @@ public class GrafoDirigido {
             de si el archivo posee formato con peso o no.
         */ 
         
-        if (conPeso == true) {
+        if (flag) {
             this.listaLados.forEach { 
-            val arcosFiltrados = mutableListOf<Arco>()
             val ladoSinSeparador = it.split(" ")
+            println("Lado sin separador : ${ladoSinSeparador}")
             val newArco = Arco(ladoSinSeparador[0].toInt(),ladoSinSeparador[1].toInt(),ladoSinSeparador[2].toDouble())
             this.listaArcos.add(newArco)
-            
-                
+            println("PRINT DE LISTA ARCOS LUEGO DE CADA ITERACION DEL ARCHIVO CON PESO: ${this.listaArcos}")
             }
         } else {
+            println("ESTA ENTRANDO EN EL ELSE LUEGO DEL TRUE Y POR ESO NO GUARDA")
             this.listaLados.forEach { 
             val ladoSinSeparador = it.split(" ")
             val newArco = Arco(ladoSinSeparador[0].toInt(),ladoSinSeparador[1].toInt())
             this.listaArcos.add(newArco)
-            
-            }
-
+            }   
+         } 
             this.grafo.forEachIndexed { index, lista ->
                 var arcosFiltrada = this.listaArcos.filter {it.first == index }
                 this.grafo.set(index, arcosFiltrada.toMutableList()) 
             }
             
-        }   
+          
     // completar
     }
 
