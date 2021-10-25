@@ -76,7 +76,18 @@ public class GrafoNoDirigido {
     // completar
     }
 
-    // Agrega un lado al grafo no dirigido
+    /*
+        descripcion: Funcion que retorna un mensaje al agregar satisfactoriamente la arista
+        y muestra al grafo luego de asignar la arista.
+         
+        precondiciones: que el objeto que invoca al metodo sea un grafo y se le pase una arista,
+        adicionalmente que no se encuentre la arista que se desea agregar en el grafo
+
+        postcondiciones: string que representa a un grafo luego de agregar el arco
+
+        tiempo de la operacion: O(n) siendo n el size de los numeros de lado
+
+     */
     fun agregarArista(a: Arista) {
         val newArista = a
         var aristasFiltrados = mutableListOf<Arista>()
@@ -98,24 +109,52 @@ public class GrafoNoDirigido {
         var stringGrafo = this.toString()
         
         return println("La arista ${a} fue agregado satisfactoriamente al grafo : ${stringGrafo}")
-    // completar
     
-    // completar
     }
 
-    // Retorna el número de lados del grafo
+     /*
+        descripcion: Funcion que retorna un int que representa la cantidad de lados del grafo no dirigido
+         
+        precondiciones: que el objeto que invoca al metodo sea un grafo no dirigido
+
+        postcondiciones: int que representa la cantidad de lados o arcos de un grafo no dirigido
+
+        tiempo de la operacion: O(1) 
+
+     */
     fun obtenerNumeroDeLados() : Int {
         return this.numLados
     // completar
     }
 
-    // Retorna el número de vértices del grafo
+     /*
+        descripcion: Funcion que retorna un int que representa la cantidad de vertices del grafo no dirigido
+         
+        precondiciones: que el objeto que invoca al metodo sea un grafo no dirigido
+
+        postcondiciones: int que representa la cantidad de vertices  de un grafo no dirigido
+
+        tiempo de la operacion: O(1) 
+
+     */
     fun obtenerNumeroDeVertices() : Int {
         return this.numVertices
     // completar
     }
 
     // Retorna los lados adyacentes al vértice v, es decir, los lados que contienen al vértice v
+    /*
+        descripcion: Funcion que retorna una lista que contiene las aristas que 
+        tengan como vertice  a v. 
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo y se le pase un int
+
+        postcondiciones: lista que contiene los arcos que 
+        contengan como vertice  a v
+
+        tiempo de la operacion: O(n) siendo n el size de los numeros de lados
+
+     */
     fun adyacentes(v: Int) : Iterable<Arista> {
         var aristasAdyacentes = mutableListOf<Arista>()
         this.listaAristas.forEachIndexed {index,arista ->
@@ -130,7 +169,16 @@ public class GrafoNoDirigido {
     // completar
     }
 
-    // Retorna todos los lados del grafo no dirigido
+      /*
+        descripcion: Funcion que retorna una lista que representa los lados del grafo no dirigido
+         
+        precondiciones: que el objeto que invoca al metodo sea un grafo no dirigido
+
+        postcondiciones: lista que representa los lados del grafo no dirigido
+
+        tiempo de la operacion: O(1) 
+
+     */
     fun aristas() : Iterable<Arista> {
         var aristaIterables = this.listaAristas.asIterable()
        
@@ -138,7 +186,16 @@ public class GrafoNoDirigido {
     // completar
     }
 
-    // Retorna un string con una representación del grafo, en donde se nuestra todo su contenido
+    /*
+        descripcion: Funcion que retorna el la representacion en string de un grafo no dirigido
+         
+        precondiciones: que el objeto que invoca al metodo sea un grafo no dirigido
+
+        postcondiciones: string que representa a un grafo no dirigido
+
+        tiempo de la operacion: O(n) siendo n el size del grafo
+
+     */
     override fun toString() : String {
         var representacionGrafo = ""
         this.grafo.forEachIndexed { index, lista ->

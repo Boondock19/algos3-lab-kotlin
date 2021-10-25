@@ -21,14 +21,7 @@ public class GrafoDirigido {
         
     }
 
-    // Se construye un grafo a partir de un archivo. Existen dos tipos de formatos de archivo.
-    // El primero solo incluye los vétices de los lados, sin los pesos. El formato es como sigue.
-    // La primera línea es el número de vértices. La segunda línea es el número de lados. Las siguientes líneas
-    // corresponden a los lados, con los vértices de un lado separados por un espacio en blanco.
-    // El segundo formato solo se diferencia del primero en que cada línea de los lados tiene a dos enteros
-    // que corresponden a los vértices de los lados y un número real que es el peso o costo del lado.
-    // La variable conPeso es true si el archivo de entrada contiene un formato que incluye los pesos de los
-    // lados. Es false si el formato solo incluye los vértices de los lados.  
+   
     constructor(nombreArchivo: String, conPeso: Boolean) {
         
         var flag = conPeso
@@ -79,7 +72,16 @@ public class GrafoDirigido {
     // completar
     }
 
-// String que muestra el contenido del grafo
+/*
+        descripcion: Funcion que retorna el la representacion en string de un digrafo
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo
+
+        postcondiciones: string que representa a un digrafo
+
+        tiempo de la operacion: O(n) siendo n el size del grafo
+
+     */
     override fun toString() : String {
         var representacionGrafo = ""
         this.grafo.forEachIndexed { index, lista ->
@@ -92,7 +94,18 @@ public class GrafoDirigido {
     // completar
      }
 
-    // Agrega un lado al digrafo
+    /*
+        descripcion: Funcion que retorna un mensaje al agregar satisfactoriamente el arco
+        y muestra al grafo luego de asignar el arco.
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo y se le pase un arco,
+        adicionalmente que no se encuentre el arco que se desea agregar en el digrafo
+
+        postcondiciones: string que representa a un digrafo luego de agregar el arco
+
+        tiempo de la operacion: O(n) siendo n el size de los numeros de lado
+
+     */
     fun agregarArco(a: Arco) {
         val newArco = a
         var arcosFiltrados = mutableListOf<Arco>()
@@ -117,13 +130,31 @@ public class GrafoDirigido {
     // completar
     }
 
-    // Retorna el número de lados del grafo
+    /*
+        descripcion: Funcion que retorna un int que representa la cantidad de lados del digrafo
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo
+
+        postcondiciones: int que representa la cantidad de lados o arcos de un digrafo
+
+        tiempo de la operacion: O(1) 
+
+     */
     fun obtenerNumeroDeLados() : Int {
         return this.numLados
     // completar
     }
 
-    // Retorna el número de vértices del grafo
+     /*
+        descripcion: Funcion que retorna un int que representa la cantidad de vertices del digrafo
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo
+
+        postcondiciones: int que representa la cantidad de vertices  de un digrafo
+
+        tiempo de la operacion: O(1) 
+
+     */
     fun obtenerNumeroDeVertices() : Int {
         return this.numVertices
     // completar
@@ -131,7 +162,19 @@ public class GrafoDirigido {
 
     
 
-    // Retorna los adyacentes de v, en este caso los lados que tienen como vértice inicial a v
+   
+     /*
+        descripcion: Funcion que retorna una lista que contiene los arcos que 
+        contengan como vertice inicial a v. 
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo y se le pase un int
+
+        postcondiciones: lista que contiene los arcos que 
+        contengan como vertice inicial a v
+
+        tiempo de la operacion: O(n) siendo n el size de los numeros de lados
+
+     */
     fun adyacentes(v: Int) : Iterable<Arco> {
         var arcosAdyacentes = mutableListOf<Arco>()
         this.listaArcos.forEachIndexed {index,arco ->
@@ -147,7 +190,16 @@ public class GrafoDirigido {
     }
     
 
-    // Retorna todos los lados del digrafo
+      /*
+        descripcion: Funcion que retorna una lista que representa los lados del digrafo
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo
+
+        postcondiciones: lista que representa los lados del digrafo
+
+        tiempo de la operacion: O(1) 
+
+     */
     fun arcos() : Iterable<Arco> {
        var arcosIterables = this.listaArcos.asIterable()
        

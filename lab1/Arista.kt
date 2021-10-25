@@ -8,7 +8,17 @@ public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable
     val first = v
     val second = u
     val aristaPeso = peso
-    // Retorna cualquiera de los dos vértices del grafo
+    
+     /*
+        descripcion: Funcion que retorna cualquiera de los vertices de una arista
+         
+        precondiciones: que el objeto que invoca al metodo sea una arista
+
+        postcondiciones: entero que representa a un vertice de una arista
+
+        tiempo de la operacion: O(1)
+
+     */
     fun cualquieraDeLosVertices() : Int {
         // Obtenemos un valor random entre 1 y 2 para seleccionar uno de los vertices
         val randomValue = (1..2).random()
@@ -20,7 +30,18 @@ public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable
     // Completar
     }
 
-    // Dado un vertice w, si w == v entonces retorna u, de lo contrario si w == u  entonces retorna v,  y si w no es igual a v ni a u, entonces se lanza una RuntimeExpception 
+    
+    /*
+        descripcion: Funcion que retorna al otro vertice perteneciente
+         a una arista
+         
+        precondiciones: que el objeto que invoca al metodo sea una arista y que w sea un valor presente en la arista
+
+        postcondiciones: entero que representa a un vertice de una arista
+
+        tiempo de la operacion: O(1)
+
+     */
     fun elOtroVertice(w: Int) : Int {
         var r = 0
         if (w == arista.first) {
@@ -33,14 +54,32 @@ public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable
         // Completar
     }
 
-    // Retorna el peso del arco
+    /*
+        descripcion: Funcion que retorna el valor del peso de una arista 
+         
+        precondiciones: que el objeto que invoca al metodo sea una arista
+
+        postcondiciones: numero real que representa al peso de la arista
+
+        tiempo de la operacion: O(1)
+
+     */
     fun obtenerPeso() : Double {
 
         return arista.third
     // Completar
     }
 
-    // Representación en string de la arista
+    /*
+        descripcion: Funcion que retorna la representacion en string de una arista
+         
+        precondiciones: que el objeto que invoca al metodo sea un arista
+
+        postcondiciones: string que representa a una arista
+
+        tiempo de la operacion: O(1)
+
+     */
     override fun toString() : String {
         return "$arista"
     // Completar
@@ -49,6 +88,18 @@ public class Arista(val v: Int, val u: Int, val peso: Double =0.0)  : Comparable
     // Se compara dos arista con respecto a su peso. Si this.obtenerPeso > other.obtenerPeso entonces
     // retorna 1. Si this.obtenerPeso < other.obtenerPeso entonces retorna -1. Si this.obtenerPeso == other.obtenerPeso
     // entonces retorna 0
+    /*
+        descripcion: Funcion que retorna un entero dependiendo de si el peso
+        de la arista actual es mayor,menor o igual en cuyos casos retorna
+        1,-1 o 0 respectivamente.
+         
+        precondiciones: que el objeto que invoca al metodo sea una arista y se le pase otra arista
+
+        postcondiciones: entero que representa que arista pesa mas
+
+        tiempo de la operacion: O(1)
+
+     */
      override fun compareTo(other: Arista): Int {
          val otherPeso = other.obtenerPeso();
          val aristaPeso = this.obtenerPeso()

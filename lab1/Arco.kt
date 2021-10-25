@@ -7,25 +7,63 @@ public class Arco(val inicio: Int, val fin: Int, val peso: Double =0.0) {
     val second = fin
     val arcoPeso = peso
 
-    // Retorna el vértice inicial del arco o lado
+    /*
+        descripcion: Funcion que retorna el valor base de un arco, es decir , 
+        retorna el vertice de salida.
+         
+        precondiciones: que el objeto que invoca al metodo sea un arco
+
+        postcondiciones: entero que representa a la vertice de salida del arco
+
+        tiempo de la operacion: O(1)
+
+     */
     fun fuente() : Int {
         return arco.first
     // Completar
     }
 
-    // Retorna el vértice final del arco o lado
+     /*
+        descripcion: Funcion que retorna el valor final de un arco, es decir , 
+        retorna el vertice de llegada.
+         
+        precondiciones: que el objeto que invoca al metodo sea un arco
+
+        postcondiciones: entero que representa a la vertice de llegada del arco
+
+        tiempo de la operacion: O(1)
+
+     */
     fun sumidero() : Int {
         return arco.second
     // Completar
     }
 
-    // Retorna el peso o costo asociado del arco o lado
+    /*
+        descripcion: Funcion que retorna el valor del peso de un arco 
+         
+        precondiciones: que el objeto que invoca al metodo sea un arco
+
+        postcondiciones: numero real que representa al peso del arco
+
+        tiempo de la operacion: O(1)
+
+     */
     fun obtenerPeso() : Double {
         return arco.third
         // Completar
     }
 
-    // Representación del arco
+     /*
+        descripcion: Funcion que retorna el la representacion en string de un arco
+         
+        precondiciones: que el objeto que invoca al metodo sea un arco
+
+        postcondiciones: string que representa a un arco
+
+        tiempo de la operacion: O(1)
+
+     */
     override fun toString() : String {
         return "$arco" 
     // Completar
