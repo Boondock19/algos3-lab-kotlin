@@ -11,6 +11,7 @@ public class GrafoDirigido : Grafo {
         var listaVertices = mutableListOf<Int>()
         var listaLados =  mutableListOf<String>()
         var grafo = Array(numVertices) {mutableListOf<Arco>()}
+        
 
     
     // Se construye un grafo a partir del número de vértices
@@ -109,21 +110,38 @@ public class GrafoDirigido : Grafo {
  
     // Retorna el grado del grafo. Si el vértice no pertenece al grafo se lanza una RuntimeException
     override fun grado(v: Int) : Int {
-        return 2+3
+        var gradoVerticeExterior = this.gradoExterior(v)
+        var gradoVerticeInterior = this.gradoInterior(v)
+        return gradoVerticeExterior + gradoVerticeInterior
     }
 
-    /*
+    
 
     // Retorna el grado exterior del grafo. Si el vértice no pertenece al grafo se lanza una RuntimeException
     fun gradoExterior(v: Int) : Int {
+        var gradoVerticeExterior = 0
+        val adyacentesDeV = this.adyacentes(v)
+        adyacentesDeV.forEach{
+            gradoVerticeExterior = gradoVerticeExterior + 1
+        }
+
+        
+        return gradoVerticeExterior
 
     }
 
     // Retorna el grado interior del grafo. Si el vértice no pertenece al grafo se lanza una RuntimeException
     fun gradoInterior(v: Int) : Int {
+        var gradoVerticeInterior = 0
+        val adyacentesDeV = this.adyacentesSumidero(v)
+        adyacentesDeV.forEach{
+            gradoVerticeInterior = gradoVerticeInterior + 1
+        }
 
+        
+        return gradoVerticeInterior
     }
-*/
+
     /*
         descripcion: Funcion que retorna un int que representa la cantidad de lados del digrafo
          
@@ -173,6 +191,32 @@ public class GrafoDirigido : Grafo {
         var arcosAdyacentes = mutableListOf<Arco>()
         this.listaArcos.forEachIndexed {index,arco ->
             if (arco.first ==  v) {
+                arcosAdyacentes.add(arco)
+            }
+        }
+        
+        arcosAdyacentes.asIterable()
+
+        return arcosAdyacentes
+    
+    }
+
+     /*
+        descripcion: Funcion que retorna una lista que contiene los arcos que 
+        contengan como vertice sumidero a v. 
+         
+        precondiciones: que el objeto que invoca al metodo sea un digrafo y se le pase un int
+
+        postcondiciones: lista que contiene los arcos que 
+        contengan como vertice sumidero a v
+
+        tiempo de la operacion: O(n) siendo n el size de los numeros de lados
+
+     */
+    fun adyacentesSumidero(v: Int) : Iterable<Arco> {
+        var arcosAdyacentes = mutableListOf<Arco>()
+        this.listaArcos.forEachIndexed {index,arco ->
+            if (arco.second ==  v) {
                 arcosAdyacentes.add(arco)
             }
         }

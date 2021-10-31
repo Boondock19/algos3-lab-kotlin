@@ -11,7 +11,7 @@ public class GrafoNoDirigido: Grafo {
         var listaVertices = mutableListOf<Int>()
         var listaLados =  mutableListOf<String>()
         var grafo = Array(numVertices) {mutableListOf<Arista>()}
-        var grafoGrado = 0
+        
     
     // Se construye un grafo a partir del número de vértices
     constructor(numDeVertices: Int) {
@@ -123,14 +123,14 @@ public class GrafoNoDirigido: Grafo {
     
     // Grado del grafo
     override fun grado(v: Int) : Int {
-        this.grafoGrado = 0
+        var grafoGrado = 0
         val adyacentesDeV = this.adyacentes(v)
         adyacentesDeV.forEach{
-            this.grafoGrado = this.grafoGrado + 1
+            grafoGrado = grafoGrado + 1
         }
 
         
-        return this.grafoGrado
+        return grafoGrado
     }
     
 
