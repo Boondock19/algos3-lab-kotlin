@@ -6,12 +6,7 @@ abstract class Lado(val a: Int, val b: Int) {
     // Retorna cualquiera de los dos vértices del grafo
     fun cualquieraDeLosVertices() : Int {
         // Obtenemos un valor random entre 1 y 2 para seleccionar uno de los vertices
-        val randomValue = (1..2).random()
-        if (randomValue == 1) {
-            return lado.first
-        } else {
-            return lado.second
-        }
+        return lado.first
     }
 
     // Dado un vertice w, si w == a entonces retorna b, de lo contrario si w == b
@@ -22,6 +17,8 @@ abstract class Lado(val a: Int, val b: Int) {
             r = lado.second
         } else if (w == lado.second) {
             r = lado.first
+        } else {
+            throw Exception("El vertice ${w} no pertenece a este lado")
         }
 
         return r

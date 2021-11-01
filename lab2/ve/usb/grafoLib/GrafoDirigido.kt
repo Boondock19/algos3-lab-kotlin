@@ -89,7 +89,7 @@ public class GrafoDirigido : Grafo {
         
         this.listaArcos.forEachIndexed { index,arco ->
             if (newArco.first == arco.first && newArco.second == arco.second) {
-                return println("El arco ${a} ya se encuentra en el grafo")
+              throw Exception("El arco ${a} ya se encuentra en el grafo")
         }
         }
         

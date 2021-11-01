@@ -3,6 +3,9 @@ import ve.usb.grafoLib.*
 
 fun main(args: Array<String>) {
 
+    for(str in args) {
+        println("Hello ${str}")
+    }
 val arcoPrueba = Arco(4,5)
 
     println("Arco de prueba : ${arcoPrueba} \n")
@@ -74,7 +77,7 @@ val arcoPrueba = Arco(4,5)
     
     grafoDirigidoPrueba2.agregarArco(arco1)
     grafoDirigidoPrueba2.agregarArco(arco2)
-    grafoDirigidoPrueba2.agregarArco(arco3)
+    // grafoDirigidoPrueba2.agregarArco(arco3)
     grafoDirigidoPrueba2.agregarArco(arco4)
     
     println("numero de lados del grafo creado con un numero : ${grafoDirigidoPrueba2.obtenerNumeroDeLados()}\n")
@@ -135,6 +138,37 @@ val arcoPrueba = Arco(4,5)
     println("Este es el grado del vertice (1) del grafo creado con un numero : ${grafoNoDirigidoPrueba2.grado(1)}\n")
 
     println("Este es el metodo toString() del grafo del grafo creado con un numero : ${grafoNoDirigidoPrueba2.toString()}\n" )
+
+    println("BusquedaEnAmplitud (BFS) Pruebas: \n")
+    var busquedaEnAmplitud1 = BusquedaEnAmplitud(grafoDirigidoPrueba,2)
+    println("Busquemos al predecesor de 1 : ${busquedaEnAmplitud1.obtenerPredecesor(1)}")
+    println("Busquemos al predecesor de 0 : ${busquedaEnAmplitud1.obtenerPredecesor(0)}")
+    println("Busquemos al predecesor de 7 : ${busquedaEnAmplitud1.obtenerPredecesor(7)}")
+   // println("Busquemos al predecesor de 8 : ${busquedaEnAmplitud1.obtenerPredecesor(8)}")
+    println("Busquemos la disntacia desde 2 a  1 : ${busquedaEnAmplitud1.obtenerDistancia(1)}")
+    println("Busquemos la disntacia desde 2 a  0 : ${busquedaEnAmplitud1.obtenerDistancia(0)}")
+    println("Busquemos la disntacia desde 2 a  7 : ${busquedaEnAmplitud1.obtenerDistancia(7)}")
+    //println("Busquemos la disntacia desde 2 a  8  : ${busquedaEnAmplitud1.obtenerDistancia(8)}")
+    println("Busquemos si existe un camino desde 2 a  1 : ${busquedaEnAmplitud1.hayCaminoHasta(1)}")
+    println("Busquemos si existe un camino desde 2 a  0 : ${busquedaEnAmplitud1.hayCaminoHasta(0)}")
+    println("Busquemos si existe un camino desde 2 a  7 : ${busquedaEnAmplitud1.hayCaminoHasta(7)}")
+    //println("Busquemos si existe un camino desde 2 a  8 : ${busquedaEnAmplitud1.hayCaminoHasta(8)}")
+    //println("Camino corto  desde 2 a  1 : ${busquedaEnAmplitud1.caminoConMenosLadosHasta(1)}")
+    println("Camino corto  desde 2 a  0 : ${busquedaEnAmplitud1.caminoConMenosLadosHasta(0)}")
+    println("Camino corto  desde 2 a  7 : ${busquedaEnAmplitud1.caminoConMenosLadosHasta(7)}")
+   // println("Camino corto  desde 2 a  8 : ${busquedaEnAmplitud1.caminoConMenosLadosHasta(8)}")
+    
+    println("BusquedaEnProfundidad (DFS) Pruebas: \n")
+    var busquedaEnProfundidad1 = BusquedaEnProfundidad(grafoDirigidoPrueba)
+    println("Busquemos al predecesor de 1 : ${busquedaEnProfundidad1.obtenerPredecesor(1)}")
+    println("Busquemos al predecesor de 0 : ${busquedaEnProfundidad1.obtenerPredecesor(0)}")
+    println("Busquemos al predecesor de 7 : ${busquedaEnProfundidad1.obtenerPredecesor(7)}")
+    //println("Camino corto  desde 2 a  8 : ${busquedaEnProfundidad1.obtenerPredecesor(8)}")
+    println("Busquemos los tiempos  de 1 : ${busquedaEnProfundidad1.obtenerTiempos(1)}")
+    println("Busquemos los tiempos  de 0 : ${busquedaEnProfundidad1.obtenerTiempos(0)}")
+    println("Busquemos los tiempos  de 7 : ${busquedaEnProfundidad1.obtenerTiempos(7)}")
+    //println("Camino corto  desde 2 a  8 : ${busquedaEnProfundidad1.obtenerTiempos(8)}")
+   
 
 
 }

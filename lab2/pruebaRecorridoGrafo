@@ -1,3 +1,0 @@
-#!/bin/bash
-
-kotlin MainKt $1 $2
