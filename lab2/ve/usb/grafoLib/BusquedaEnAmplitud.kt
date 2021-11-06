@@ -59,14 +59,8 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
             }
             
 
-          
-        println("esto es g de busquedaEnAmplitud :  ${listaLados}")
-        println("Lista de vertices , ${listaDeVertices}")
-        println("Lista de colores , ${listaDeColores}")
-        println("Lista de distancias , ${listaDeDistancias}")
-        println("Lista de predecesores , ${listaDePredecesores}")
-        println("Lista de adyacentes , ${adyacentes}")
-        println("Lista de adyacentes , ${listaDeCamino}")
+         // println("Grafo de amplitud para el valor ${s}: ${g}")
+       
     }
 
     /*
@@ -120,11 +114,14 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
      */ 
     fun caminoConMenosLadosHasta(v: Int) : Iterable<Int>  { 
         var caminoPCorto = mutableListOf<Int?>()
+        var caminoNulo = mutableListOf<Int>()
         var predecesor : Int?
          if ( v in this.listaDeVertices ) {
             var predecesor = v
             if (this.listaDePredecesores[predecesor] == null) {
-                throw Exception("El vertice ${v} no posee predecesores en el grafo")
+                caminoNulo.add(0)
+                return caminoNulo.asIterable()
+                //throw Exception("El vertice ${v} no posee predecesores en el grafo")
             }
             caminoPCorto.add(v)
              while (this.listaDePredecesores[predecesor] != s){

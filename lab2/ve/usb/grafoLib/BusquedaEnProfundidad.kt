@@ -34,14 +34,7 @@ public class BusquedaEnProfundidad(val g: Grafo) {
         listaDeVertices.forEachIndexed{index, vertice ->
             dfsVisit(g,vertice)
          }
-
-        println("esto es g de busquedaEnProfundidad:  ${listaLados}")
-        println("Lista de vertices , ${listaDeVertices}")
-        println("Lista de colores , ${listaDeColores}")
-        println("Lista de Ti ,  ${listaDeTi}")
-         println("Lista de Tf , ${listaDeTf}")
-        println("Lista de predecesores , ${listaDePredecesores}")
-    }
+        }
 
     private fun dfsVisit(g: Grafo, u: Int) {
         var adyacencia = g.adyacentes(u)
@@ -91,4 +84,46 @@ public class BusquedaEnProfundidad(val g: Grafo) {
             throw Exception("El vertice ${v} no se encuentra en el grafo")
         }
      }
+
+      // Comparamos para obtener el vertice tiempo final mayor
+    fun  comparacionTiempo(a:Int,b:Int): Int? {
+         var parA = obtenerTiempos(a).toList()
+         var parB = obtenerTiempos(b).toList()
+        
+         var tIa = parA[0]
+         var tFa = parA[1]
+         var tIb = parB[0]
+         var tFb = parB[1]
+        
+    
+        if ( tIa < tIb && tFb < tFa) return a
+        else if ( tIb <= tIa && tFa <= tFb  ) return b
+        else return null
+        
+
+      }
+
+       
+       fun tipoDeLado(a:Lado):String{
+           var ladoLista = a.toList()
+           if ( obtenerPredecesor(ladoLista[0]) == ladoLista[1] || obtenerPredecesor(ladoLista[1]) == ladoLista[0] ) {return "TREE"}
+       }
+      /* 
+      fun tipoDeLado(a:Lado):String {
+        var ladoLista = a.toList()
+        // todos los lados de un DFS son tree edges
+        if (obtenerPredecesor(ladoLista[0]) == ladoLista[1] ||
+        obtenerPredecesor(ladoLista[1]) == ladoLista[0]) return "TREE"
+        // si es un grafo no dirigifo solo puede tener tree/foward edge
+        // o back edge
+        if (g is GrafoNoDirigido || ladoLista[0] == ladoLista[1]) return "BACK"
+        // si el grado es dirigido y no es ninguno de los anteriores
+        // estudiamos el resto te edges
+        when(comparacionTiempo(ladoLista[0],ladoLista[1])){
+            ladoLista[0] -> "FOWARD"
+            ladoLista[0] -> "BACK"
+            else -> "CROSS"
+        }
+    }  
+    */ 
 }

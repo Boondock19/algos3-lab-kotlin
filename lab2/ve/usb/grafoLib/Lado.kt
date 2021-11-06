@@ -2,6 +2,8 @@ package ve.usb.grafoLib
 
 abstract class Lado(val a: Int, val b: Int) {
     val lado = Pair(a,b)
+    var primerV=lado.first
+    var segundoV=lado.second
 
     // Retorna cualquiera de los dos vértices del grafo
     fun cualquieraDeLosVertices() : Int {
