@@ -21,6 +21,13 @@ fun main(args: Array<String>) {
     println("Estos son los Arcos del grafo sin Peso : ${grafoDirigidoInversoPrueba.arcos()}\n")
     println("Estos son los Arcos adyacentes del vertice del grafo sin Peso  : ${grafoDirigidoInversoPrueba.adyacentes(2)}\n")
     println("Este es el metodo toString() del grafo sin Peso: ${grafoDirigidoInversoPrueba.toString()}\n" )
+    println("Prueba de OrdenamientoTopologico : \n")
+   // var grafoDirigidoOrdenTopologicoPrueba = OrdenTopologico(grafoDirigidoPrueba)
+    var grafoDirigidoPrueba2 = GrafoDirigido("dag.txt",false)
+    var grafoDirigidoOrdenTopologicoPrueba = OrdenTopologico(grafoDirigidoPrueba2)
+    println("Tiene ciclos ?? : ${grafoDirigidoOrdenTopologicoPrueba.esUnGrafoAciclicoDirecto()}\n")
+    println("Obtener orden Topologico : ${grafoDirigidoOrdenTopologicoPrueba.obtenerOrdenTopologico()}\n")
+    
   
    
 

@@ -198,6 +198,11 @@ public class GrafoDirigido : Grafo {
     }
 
     
+    // funcion que retorna la lista de vertices de grafo
+
+    fun listaDeVertices(): MutableList<Int> {
+        return this.listaVertices
+    }
 
    
      /*

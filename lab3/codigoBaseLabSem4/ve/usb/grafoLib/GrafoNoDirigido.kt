@@ -129,7 +129,11 @@ public class GrafoNoDirigido: Grafo {
       
     }
 
-   
+    // funcion que retorna la lista de vertices de grafo
+
+    fun listaDeVertices(): MutableList<Int> {
+        return this.listaVertices
+    }
    
     
     // Grado del grafo

@@ -15,6 +15,7 @@ public class BusquedaEnProfundidad(val g: Grafo) {
     var numVertices = g.obtenerNumeroDeVertices()
     var tiempo : Int 
     var vertices = mutableListOf<Int>()
+    var ordenTopologicoLista = mutableListOf<Int>()
     init {
 	
     // Se ejecuta DFS
@@ -31,19 +32,27 @@ public class BusquedaEnProfundidad(val g: Grafo) {
         
         tiempo = 0
         
-        println("Esta es la lista de vertices con un mutableMaP :  ${this.listaDeVertices} \n")
+       // println("Esta es la lista de vertices con un mutableMaP :  ${this.listaDeVertices} \n")
        
          for (i in 0..numVertices-1 ){
         if (listaDeVertices.get(i).get("color") == Color.BLANCO) {
             dfsVisit(g,i)
             }
         }
-         println("Esta es la lista de vertices con un mutableMaP luego del dfs:  ${this.listaDeVertices} \n")
+         println("Esta es la lista de vertices con un mutableMaP :  ${this.listaDeVertices} \n")
     }
 
      
     private fun dfsVisit(g: Grafo, u: Int) {
         var adyacencia = g.adyacentes(u)
+        /* 
+        adyacentes.forEach{ l ->
+            primerVertice = l.primerV
+            segundoVertice = l.segundoV
+            if (primerVertice == segundoVertice){
+
+            } 
+        }*/
         this.tiempo = tiempo + 1
         this.listaDeVertices.get(u).put("ti",tiempo)
         this.listaDeVertices.get(u).put("color",Color.GRIS)
@@ -59,6 +68,8 @@ public class BusquedaEnProfundidad(val g: Grafo) {
         this.listaDeVertices.get(u).put("color",Color.NEGRO)
         this.tiempo = tiempo + 1
         this.listaDeVertices.get(u).put("tf",tiempo)
+        // lista de orden topologico pero invertida (El primero que termine se agrega, pero al voltearla nos quedara ordenada de mayor a menor en relacion al tiempo final)
+        this.ordenTopologicoLista.add(u)
 
      }
      
@@ -114,5 +125,10 @@ public class BusquedaEnProfundidad(val g: Grafo) {
             l.segundoV  -> return "BACK"
             else -> return "CROSS"
         }
+    }
+
+    fun ordenTopologicoGrafo():Iterable<Int>{
+        var ordenTopologicoListaInversa = this.ordenTopologicoLista.reversed()
+        return ordenTopologicoListaInversa.asIterable()
     }
 }

@@ -7,6 +7,14 @@ package ve.usb.grafoLib
    o no de un ciclo. 
 */
 public class CicloDigrafo(val g: GrafoDirigido) {
+    var listaVertices = g.listaDeVertices()
+    var cicloEncontrado = false
+    var caminoVertices = mutableListOf<Int>() 
+    dfs = BusquedaEnProfundidad(g)
+
+    listaVertices.forEach{ v ->
+        
+    }
 
     // Si el grafo tiene un ciclo retorna la secuencia de vértices del ciclo,
     // y en caso contrario retorna una RuntineException
