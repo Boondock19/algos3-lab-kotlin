@@ -27,11 +27,8 @@ public class CFC(val g: GrafoDirigido) {
         var ladoSumidero = a.sumidero()
         listaCFCTemp.add(ladoFuente)
         while (dfsInverso.obtenerPredecesor(ladoFuente) != null  && dfsInverso.obtenerPredecesor(ladoFuente) as Int != ladoSumidero ){
-            println("Iteracion dentro del while ladoFuente antes de cambiar :  $ladoFuente \n")
             ladoFuente = dfsInverso.obtenerPredecesor(ladoFuente) as Int
-            println("Iteracion dentro del while  Predecesor ladoFuente  :  $ladoFuente \n")
             listaCFCTemp.add(ladoFuente)
-            println("Iteracion dentro del while listaCFCTemp :  $listaCFCTemp \n")
           }
         listaCFCTemp.add(ladoSumidero)
         this.listaCFC.add(listaCFCTemp)
@@ -47,9 +44,22 @@ public class CFC(val g: GrafoDirigido) {
     fun estanFuertementeConectados(v: Int, u: Int) : Boolean {
       var conectados = false
       if (v in this.listaDeVertices && u in this.listaDeVertices){
-        this.listaCFC.forEach{c->
-          if(c.contains(v) && c.contains(u)){
-            conectados = true
+        if (this.obtenerIdentificadorCFC(v) != this.obtenerIdentificadorCFC(u)){
+          this.listaCFC.forEach{c->
+            c.forEach{vertice->
+              println("Este es el vertice del forEach de la componente $c , vertice $vertice \n")
+              var adyacentes = g.adyacentes(vertice)
+              adyacentes.forEach{a ->
+                if(v == a.segundoV && u == a.primerV){
+                  conectados = true
+                }
+                 if(u == a.segundoV && v == a.primerV){
+                  conectados = true
+                }
+              }
+               println("Lista de adyacencias  , $adyacentes \n")
+              println("conectado dps de cada iteracion $conectados")
+            }
           }
         }
       } else {
@@ -100,6 +110,10 @@ public class CFC(val g: GrafoDirigido) {
      y se va a tener que el en grafo componente el vértice 0 representa a la componente conexa que
      contiene a los vértices 5,6 y 8 de g
      */
-   // fun obtenerGrafoComponente() : GrafoNoDirigido {}
+    fun obtenerGrafoComponente() : GrafoDirigido {
+      var numVerticesConexos = this.numeroDeCFC()
+      var grafoConexo = GrafoDirigido(numVerticesConexos)
+      return grafoConexo
+    }
 
 }
