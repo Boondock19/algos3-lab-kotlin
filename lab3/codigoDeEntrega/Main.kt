@@ -37,6 +37,8 @@ fun main(args: Array<String>) {
     println("Tiene ciclos ?? : ${grafoCFC.estanFuertementeConectados(1,2)}\n")
     println("Obtener La lista CFC del grafo : ${grafoCFC.obternerCFC()}\n")
     println("Obtener la cantidad de componentes fuertemente Conexas : ${grafoCFC.numeroDeCFC()}\n")
+    println("Obtener El identificador de la componente conexa que contiene al vertice 1 : ${grafoCFC.obtenerIdentificadorCFC(4)}\n")
+    println("Obtener  si existe una componente conexa que contenga a 4 y 1 : ${grafoCFC.estanFuertementeConectados(1,8)}\n")
     
   
    

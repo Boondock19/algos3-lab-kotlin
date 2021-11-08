@@ -12,8 +12,13 @@ public class CFC(val g: GrafoDirigido) {
     var dfsInverso = BusquedaEnProfundidad(grafoInverso,ordenTopologico)
     var listaCFC :MutableList<MutableSet<Int>> = mutableListOf()
     var listaArcos = grafoInverso.arcos()
+    var numVertices = g.obtenerNumeroDeVertices()
+    var listaDeVertices = mutableListOf<Int>()
     
   init {
+    for (i in 0..this.numVertices-1){
+      this.listaDeVertices.add(i)
+    }
     this.listaArcos.forEach{ a ->
       var edge = dfsInverso.edges(a)
       var listaCFCTemp = mutableSetOf<Int>()
@@ -40,11 +45,18 @@ public class CFC(val g: GrafoDirigido) {
      entrada, no pertenece al grafo, entonces se lanza un RuntineException
      */
     fun estanFuertementeConectados(v: Int, u: Int) : Boolean {
-      println("Este es el orden topologico de dfs : $ordenTopologico \n")
-      println("Este es el grafo de dfs : $g \n")
-      println("Este es el grafo inverso de dfs : $grafoInverso \n")
-      println("ESTA ES LA LISTA DE LAS CFC : $listaCFC")
-      return false
+      var conectados = false
+      if (v in this.listaDeVertices && u in this.listaDeVertices){
+        this.listaCFC.forEach{c->
+          if(c.contains(v) && c.contains(u)){
+            conectados = true
+          }
+        }
+      } else {
+        throw Exception("El vertice $v o $u no pertenecen al grafo")
+      }
+      
+      return conectados
     }
 
     // Indica el número de componentes fuertemente conexas
@@ -57,12 +69,23 @@ public class CFC(val g: GrafoDirigido) {
      el vértice v. El identificador es un número en el intervalo [0 , numeroDeCFC()-1].
      Si el vértice v no pertenece al grafo g se lanza una RuntimeException
      */
-    /* 
+     
     fun obtenerIdentificadorCFC(v: Int) : Int {
-	
+      var indentificador = 0
+      if (v in this.listaDeVertices) {
+        this.listaCFC.forEachIndexed{index,c ->
+          if(c.contains(v)) {
+            indentificador = index
+            }
+        }
+      } else {
+        throw Exception("El vertice $v no se encuentra en el grafo")
+      }
+
+      return indentificador 
     }
     
-  */
+
   
     fun  obternerCFC() : Iterable<MutableSet<Int>> {
       return  this.listaCFC.asIterable()
