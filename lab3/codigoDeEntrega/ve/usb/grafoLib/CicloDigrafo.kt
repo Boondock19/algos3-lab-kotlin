@@ -1,11 +1,6 @@
 package ve.usb.grafoLib
 
-/* 
-   Determina la existencia o no de un ciclo en un digrafo.
-   En el momento de la creación de un objeto de este tipo,
-   se ejecuta una versión de  DFS que determina la existencia 
-   o no de un ciclo. 
-*/
+
 public class CicloDigrafo(val g: GrafoDirigido) {
     var dfs = BusquedaEnProfundidad(g)
     var listaDeArcos = g.arcos()
@@ -15,8 +10,19 @@ public class CicloDigrafo(val g: GrafoDirigido) {
     var ladoFuente = 0    
    
 
-    // Si el grafo tiene un ciclo retorna la secuencia de vértices del ciclo,
-    // y en caso contrario retorna una RuntineException
+     /*
+        descripcion: Funcion que retorna camino de vertices de un ciclo
+         
+        precondiciones: que sea invocado por un objeto de la clase cicloDigrafo y por
+        lo tanto que sea llamado por un digrafo
+
+        postcondiciones: lista de enteros que representa el camino de un ciclo
+
+        tiempo de la operacion: O(V+E) ya que utiliza el dfs del grafo G,
+        ademas iterar sobre los lados para verificar los tipo de edge (tiempo
+        O(E) e iterar sobre los predecesores del primer ciclo encontrado O(V))
+
+     */
    fun cicloEncontrado() : Iterable<Int> {
      listaDeArcos.forEach   {l ->
      var edge = dfs.edges(l)
@@ -32,7 +38,6 @@ public class CicloDigrafo(val g: GrafoDirigido) {
        var ladoFuente = l.fuente()
        var ladoSumidero = l.sumidero()
         caminoCiclo.add(ladoFuente)
-       // var predecesorsig = dfs.obtenerPredecesor(ladoFuente) as Int
         while (  dfs.obtenerPredecesor(ladoFuente) as Int != ladoSumidero){
             ladoFuente = dfs.obtenerPredecesor(ladoFuente) as Int
             caminoCiclo.add(ladoFuente)
@@ -48,7 +53,19 @@ public class CicloDigrafo(val g: GrafoDirigido) {
     
 }
 
-    // Retorna true si el digrafo G tiene un ciclo, false en caso contrario
+     /*
+        descripcion: Funcion que retorna un booleano indicando si el grafo posee un 
+        ciclo o no.
+         
+        precondiciones: que sea invocado por un objeto de la clase cicloDigrafo y por
+        lo tanto que sea llamado por un digrafo
+
+        postcondiciones: booleano que indica si el grafo posee un 
+        ciclo.
+
+        tiempo de la operacion: O(V+E) ya que utiliza el dfs del grafo G
+
+     */
     fun existeUnCiclo() : Boolean {
         listaDeArcos.forEach{l ->
         var edge = dfs.edges(l)

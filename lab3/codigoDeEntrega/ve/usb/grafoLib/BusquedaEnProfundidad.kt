@@ -54,14 +54,6 @@ public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = m
      
     private fun dfsVisit(g: Grafo, u: Int) {
         var adyacencia = g.adyacentes(u)
-        /* 
-        adyacentes.forEach{ l ->
-            primerVertice = l.primerV
-            segundoVertice = l.segundoV
-            if (primerVertice == segundoVertice){
-
-            } 
-        }*/
         this.tiempo = tiempo + 1
         this.listaDeVertices.get(u).put("ti",tiempo)
         this.listaDeVertices.get(u).put("color",Color.GRIS)
@@ -83,10 +75,15 @@ public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = m
      }
      
 
-    /*
-     Retorna el predecesor de un vértice v. Si el vértice no tiene predecesor 
-     se retorna null. En caso de que el vértice v no exista en el grafo se lanza
-     una RuntimeException 
+     /*
+        descripcion: Funcion que retorna al predecesor del vertice v
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnProfundidad 
+
+        postcondiciones: int que representa al predecesor de v
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
      */    
      
     fun obtenerPredecesor(v: Int) : Int? { 
@@ -97,9 +94,16 @@ public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = m
         }
     }
     
-     /*
-     Retorna un par con el tiempo inical y final de un vértice durante la ejecución de DFS. 
-      En caso de que el vértice v no exista en el grafo se lanza una RuntimeException 
+      /*
+        descripcion: Funcion que retorna la el ti y tf de v
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnProfundidad y el
+       vertice v pertenezca a G
+
+        postcondiciones: Par de int que indica el ti y tf de v
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
      */
      
     fun obtenerTiempos(v: Int) : Pair<Int, Int> { 
@@ -114,7 +118,17 @@ public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = m
         }
      }
     
-    //Comparamos para obtener el vertice tiempo final mayor
+    
+       /*
+        descripcion: Funcion que retorna el vertice que tengan el tiempo final mayor
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnProfundidad 
+
+        postcondiciones: vertice con el tiempo final mayor
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
+     */
    fun  comparacionTiempo(a:Int,b:Int): Int? {
        val tiempoIa = this.listaDeVertices.get(a).get("ti") as Int
        val tiempoFa = this.listaDeVertices.get(a).get("tf") as Int
@@ -125,6 +139,17 @@ public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = m
         else return null
    }
 
+  
+       /*
+        descripcion: Funcion que retorna el tipo de edge de un lado del grafo
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnProfundidad 
+
+        postcondiciones: Par de int que indica el ti y tf de v
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
+     */
     fun edges(l:Lado): String {
         if (obtenerPredecesor(l.segundoV) == l.primerV) return "TREE"
         if (g is GrafoNoDirigido || l.primerV == l.segundoV) return "BACK"
@@ -134,6 +159,19 @@ public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = m
             else -> return "CROSS"
         }
     }
+
+    /*
+        descripcion: Funcion que retorna el orden del tiempo final de los vertices, desde
+        mayor a menor del dfs del grafo
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnProfundidad 
+
+        postcondiciones: lista de int con el orden de mayor a menor del tiempo final de cada
+        vertice
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
+     */
 
     fun ordenTopologicoGrafo():Iterable<Int>{
         var ordenTopologicoListaInversa = this.ordenTopologicoLista.reversed()

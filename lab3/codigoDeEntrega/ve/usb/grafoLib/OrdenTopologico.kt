@@ -1,15 +1,20 @@
 package ve.usb.grafoLib
 
-/*
-  Determina el orden topológico de un DAG
-*/
+
 public class OrdenTopologico(val g: GrafoDirigido) {
     var dfs = BusquedaEnProfundidad(g)
     var listaDeArcos = g.arcos()
     
-    // Retorna true si el grafo g es un DAG, de lo contrario retorna false
-    /*
-     
+      /*
+        descripcion: Funcion que retorna el si un grafo es un DAG
+         
+        precondiciones: que sea invocado por un objeto de la clase OrdenTopologico
+
+        postcondiciones: booleano que indica si el grafo pasado como argumento a la
+        clase es un DAG 
+
+        tiempo de la operacion: O(E) E el numero de lados
+
      */
     fun esUnGrafoAciclicoDirecto() : Boolean {
       listaDeArcos.forEach{l ->
@@ -19,8 +24,18 @@ public class OrdenTopologico(val g: GrafoDirigido) {
       return true
     }
 
-    // Retorna el ordenamiento topológico del grafo g. Si el grafo G no es DAG,
-    // entonces se lanza una RuntineException()
+     /*
+        descripcion: Funcion que retorna el orden topologico de un grafo  DAG
+         
+        precondiciones: que sea invocado por un objeto de la clase OrdenTopologico
+
+        postcondiciones: lista o iterable de enteros que representa el orden topologico del
+        grafo
+
+        tiempo de la operacion: O(V + E ) porque se necesita el dfs para generar la lista de orden 
+        topologico
+
+     */
     fun obtenerOrdenTopologico() : Iterable<Int> {
       if (esUnGrafoAciclicoDirecto() == false) throw Exception("El grafo no es un DAG")
       return dfs.ordenTopologicoGrafo()

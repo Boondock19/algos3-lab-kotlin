@@ -36,10 +36,19 @@ public class CFC(val g: GrafoDirigido) {
       }
     }
     
-    /*
-     Retorna true si dos componentes están fuertemente conectados y
-     falso en caso contrario. Si el algunos de los dos vértices de
-     entrada, no pertenece al grafo, entonces se lanza un RuntineException
+     /*
+        descripcion: Funcion que retorna un booleano indicando si dos componentes conexas estan
+        conectadas entre si por un par de vertices
+         
+        precondiciones: que sea invocado por un objeto de la clase CFC y por
+        lo tanto que sea llamado por un digrafo
+
+        postcondiciones: booleano que indica si dos componentes conexas estan conectadas.
+
+        tiempo de la operacion: O(V+E) ya que utiliza el dfs del grafo G, adicionalmente
+        iteramos sobre la lista de componentes conexas O(numeroCFC()), sobre los vertices
+        de cada componente O(v) y sobre la lista adyacente de cada vertice O(v). 
+
      */
     fun estanFuertementeConectados(v: Int, u: Int) : Boolean {
       var conectados = false
@@ -66,15 +75,35 @@ public class CFC(val g: GrafoDirigido) {
       return conectados
     }
 
-    // Indica el número de componentes fuertemente conexas
+       /*
+        descripcion: Funcion que retorna el numero de componentes que posee el grafo
+         
+       precondiciones: que sea invocado por un objeto de la clase CFC y por
+        lo tanto que sea llamado por un digrafo
+
+        postcondiciones: int que indica la cantidad de componentes conexas
+
+        tiempo de la operacion: O(1) es una asignacion o return
+
+     */
     fun numeroDeCFC() : Int {
       return this.listaCFC.size
     }
 
-    /*
-     Retorna el identificador de la componente fuertemente conexa donde está contenido 
-     el vértice v. El identificador es un número en el intervalo [0 , numeroDeCFC()-1].
-     Si el vértice v no pertenece al grafo g se lanza una RuntimeException
+     /*
+        descripcion: Funcion que retorna la posicion de un vertice en la una componente conexa
+        dentro de un mutableSet
+         
+       precondiciones: que sea invocado por un objeto de la clase CFC y por
+        lo tanto que sea llamado por un digrafo, y que el vertice v pertenezca
+        al digrafo
+
+        postcondiciones: int que indica la posicion de la componente conexa
+        a la que pertenece el vertice
+
+        tiempo de la operacion: O(V) porque iteramos sobre los vertices
+        de la lista de componentes.
+
      */
      
     fun obtenerIdentificadorCFC(v: Int) : Int {
@@ -93,19 +122,36 @@ public class CFC(val g: GrafoDirigido) {
     }
     
 
-  
+       /*
+        descripcion: Funcion que la lista CFC del grafo
+         
+       precondiciones: que sea invocado por un objeto de la clase CFC y por
+        lo tanto que sea llamado por un digrafo
+
+        postcondiciones: lista que contiene las componentes fuertemente conexas del grafo
+
+        tiempo de la operacion: O(V+E) porque realizamos el DFS del grafo, obtenemos el grafo
+        inverso y realizamos DFS del grafo inverso
+
+     */
     fun  obternerCFC() : Iterable<MutableSet<Int>> {
       return  this.listaCFC.asIterable()
     }
   
-    /*
-     Retorna el grafo componente asociado a las componentes fuertemente conexas. 
-     El identificado de los vértices del grafo componente está asociado con los indicados en 
-     la función obtenerCFC. Es decir, si por ejemplo si los vértices 5,6 y 8 de g pertenecen a la
-     componentemente fuertemente conexa cero, entonces 
-     obtenerIdentificadorCFC(5) = obtenerIdentificadorCFC(6) = obtenerIdentificadorCFC(8) = 0
-     y se va a tener que el en grafo componente el vértice 0 representa a la componente conexa que
-     contiene a los vértices 5,6 y 8 de g
+         /*
+        descripcion: Funcion que retorna el digrafo que se obtiene de las componentes
+        fuertemente conexas
+         
+       precondiciones: que sea invocado por un objeto de la clase CFC y por
+        lo tanto que sea llamado por un digrafo
+
+        postcondiciones: digrafo que contiene a las componentes fuertemente conexas y 
+        sus lados.
+
+        tiempo de la operacion: O(v^2) porque realizamos un ciclo dentro de un ciclo para poder 
+        recorrer la lista de CFC y verificar cada vertice , y asi obtener la direccion de los 
+        lados que hay entre las componentes conexas y poder generar el grafo componente resultante
+
      */
     fun obtenerGrafoComponente() : GrafoDirigido {
       var numVerticesConexos = this.numeroDeCFC()
@@ -122,7 +168,6 @@ public class CFC(val g: GrafoDirigido) {
               
                 if(this.estanFuertementeConectados(primerVertice,segundoVertice)){
                      
-                    println("${this.estanFuertementeConectados(primerVertice,segundoVertice)}")
                     if(primerVertice == a.segundoV && segundoVertice == a.primerV){
                     indentificador1=this.obtenerIdentificadorCFC(segundoVertice)
                     indentificador2=this.obtenerIdentificadorCFC(primerVertice)
@@ -147,10 +192,6 @@ public class CFC(val g: GrafoDirigido) {
         listaArcosFiltrada.forEach{a ->
           grafoConexo.agregarArco(a)
         }
-
-          
-        
-        println("Lista de set arcos sin duplicados : $listaArcosFiltrada")
         
       return grafoConexo
     }

@@ -20,7 +20,7 @@ public class GrafoNoDirigido: Grafo {
             this.listaVertices.add(i)
         }
         this.grafo = Array(this.numVertices) {mutableListOf<Arista>()}
-    // completar
+    
     }
 
     constructor(nombreArchivo: String, conPeso: Boolean) {
@@ -70,7 +70,7 @@ public class GrafoNoDirigido: Grafo {
                 var aristasFiltrada = this.listaAristas.filter {it.primerV == index }
                 this.grafo.set(index, aristasFiltrada.toMutableList()) 
             }
-    // completar
+    
     }
 
     // Agrega un lado al grafo no dirigido
@@ -166,7 +166,7 @@ public class GrafoNoDirigido: Grafo {
         var aristaIterables = this.listaAristas.asIterable()
        
        return aristaIterables
-    // completar
+    
     }
 
     /*
@@ -188,6 +188,6 @@ public class GrafoNoDirigido: Grafo {
          }
             
         return " ${representacionGrafo}"
-    // completar
+    
      }
 }

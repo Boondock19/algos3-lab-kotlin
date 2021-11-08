@@ -1,6 +1,15 @@
 package ve.usb.grafoLib
 
-// Retorna el digrafo inverso de un grafo
+  /*
+        descripcion: Funcion que retorna el grafo inverso de un digrafo
+         
+        precondiciones: que el argumento a pasar sea un digrafo
+
+        postcondiciones: digrafo inverso g^-1 
+
+        tiempo de la operacion: O(V + E) siendo V el numero de vertices y E el numero de lados
+
+     */
 fun digrafoInverso(g: GrafoDirigido) : GrafoDirigido {
     var listaDeArcos = g.arcos()
     var listaDeArcosInversos = mutableListOf<Arco>()

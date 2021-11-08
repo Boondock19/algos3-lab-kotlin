@@ -60,15 +60,18 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
             }
             
 
-         println("Grafo de amplitud para el valor ${s}: ${g}")
-         println("ESTE ES EL VALOR DE LA LISTA DE VERTICES: ${this.listaDeVertices}")
        
     }
 
-    /*
-     Retorna el predecesor de un vértice v. Si el vértice no tiene predecesor 
-     se retorna null. En caso de que el vértice v no exista en el grafo se lanza
-     una RuntimeException 
+  /*
+        descripcion: Funcion que retorna al predecesor del vertice v
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnAmplitud 
+
+        postcondiciones: int que representa al predecesor de v
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
      */
     fun obtenerPredecesor(v: Int) : Int? {  
         if ( v in this.vertices ) {
@@ -79,9 +82,14 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
     }
 
     /*
-     Retorna la distancia, del camino con menos lados, desde el vértice inicial s 
-     hasta el un vértice v. 
-     En caso de que el vértice v no exista en el grafo se lanza una RuntimeException 
+        descripcion: Funcion que retorna la distancia mas corta desde s hasta v
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnAmplitud 
+
+        postcondiciones: int que representa la menor distancia desde s hasta v
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
      */
    fun obtenerDistancia(v: Int) : Int {  
           if ( v in this.vertices ) {
@@ -91,11 +99,17 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
         }
    }
 
-    /*
-     Indica si hay camino desde el vértice inicial s hasta el un vértice v.
-     Si el camino existe retorna true, de lo contrario falso
-     En caso de que el vértice v no exista en el grafo se lanza una RuntimeException 
-     */ 
+     /*
+        descripcion: Funcion que retorna un boleano para saber si un hay un camino
+        desde s hasta un vertice v
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnAmplitud 
+
+        postcondiciones: booleano que indica si hay un camino hasta v desde s.
+
+        tiempo de la operacion: O(1) porque son comparaciones y asignaciones.
+
+     */
     fun hayCaminoHasta(v: Int) : Boolean { 
            if ( v in this.vertices ) {
                if (this.listaDeVertices.get(v).get("distancia") as Int != 0){
@@ -109,11 +123,15 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
      }
 
     /*
-     Retorna el camino con menos lados,  desde el vértice inicial s 
-     hasta el un vértice v. El camino es representado como un objeto iterable con
-     los vértices del camino desde s hasta v.
-     En caso de que el vértice v no exista en el grafo se lanza una RuntimeException 
-     */ 
+        descripcion: Funcion que retorna el camino de menor tamaño desde un vertice s hasta v
+         
+       precondiciones: que sea invocado por un objeto de la clase BusquedaEnAmplitud 
+
+        postcondiciones: lista que representa al camino mas corto desde s hasta v
+
+        tiempo de la operacion: O(v) ya que se recorren los vertices para obtener el camino.
+
+     */
     
     
     fun caminoConMenosLadosHasta(v: Int) : Iterable<Int>  { 
@@ -126,7 +144,7 @@ public class BusquedaEnAmplitud(val g: Grafo, val s: Int) {
                 var caminoCorto = caminoPCorto.filterNotNull()
                 caminoCorto = caminoCorto.reversed()
                 return  caminoCorto.asIterable()
-                //throw Exception("El vertice ${v} no posee predecesores en el grafo")
+                
             }
             caminoPCorto.add(v)
              while (this.listaDeVertices.get(verticeAnterior).get("predecesor") as Int? != s){
