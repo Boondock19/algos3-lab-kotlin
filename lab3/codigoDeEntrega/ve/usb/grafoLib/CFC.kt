@@ -47,7 +47,6 @@ public class CFC(val g: GrafoDirigido) {
         if (this.obtenerIdentificadorCFC(v) != this.obtenerIdentificadorCFC(u)){
           this.listaCFC.forEach{c->
             c.forEach{vertice->
-              println("Este es el vertice del forEach de la componente $c , vertice $vertice \n")
               var adyacentes = g.adyacentes(vertice)
               adyacentes.forEach{a ->
                 if(v == a.segundoV && u == a.primerV){
@@ -57,8 +56,6 @@ public class CFC(val g: GrafoDirigido) {
                   conectados = true
                 }
               }
-               println("Lista de adyacencias  , $adyacentes \n")
-              println("conectado dps de cada iteracion $conectados")
             }
           }
         }
@@ -113,6 +110,47 @@ public class CFC(val g: GrafoDirigido) {
     fun obtenerGrafoComponente() : GrafoDirigido {
       var numVerticesConexos = this.numeroDeCFC()
       var grafoConexo = GrafoDirigido(numVerticesConexos)
+      var setArcos = mutableListOf<Arco>()
+         this.listaCFC.forEach{c->
+            c.forEach{vertice->
+              var adyacentes = g.adyacentes(vertice)
+              adyacentes.forEach{a ->
+                var primerVertice = a.primerV
+                var segundoVertice = a.segundoV
+                var indentificador1 = 0
+                var indentificador2 = 0
+              
+                if(this.estanFuertementeConectados(primerVertice,segundoVertice)){
+                    /* 
+                    println("${this.estanFuertementeConectados(primerVertice,segundoVertice)}")
+                    if(primerVertice == a.segundoV && segundoVertice == a.primerV){
+                    indentificador1=this.obtenerIdentificadorCFC(segundoVertice)
+                    indentificador2=this.obtenerIdentificadorCFC(primerVertice)
+                    var newArco=Arco(indentificador1,indentificador2)
+                    setArcos.add(newArco)
+                   // grafoConexo.agregarArco(newArco)
+                  }*/
+                   
+                  if(segundoVertice == a.segundoV && primerVertice == a.primerV){
+                    indentificador1=this.obtenerIdentificadorCFC(primerVertice)
+                    indentificador2=this.obtenerIdentificadorCFC(segundoVertice)
+                    var newArco=Arco(indentificador1,indentificador2)
+                    
+                    setArcos.add(newArco)
+                   // grafoConexo.agregarArco(newArco)
+                  }
+               }
+             }
+            }
+          }
+        
+        var setArcosFiltrada = setArcos.toHashSet()
+        var listaArcosFiltrada = setArcos.distinctBy {listOf(it.primerV,it.segundoV)}
+
+          
+        
+        println("Lista de set arcos sin duplicados : $listaArcosFiltrada")
+        
       return grafoConexo
     }
 
