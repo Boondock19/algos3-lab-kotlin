@@ -121,15 +121,15 @@ public class CFC(val g: GrafoDirigido) {
                 var indentificador2 = 0
               
                 if(this.estanFuertementeConectados(primerVertice,segundoVertice)){
-                    /* 
+                     
                     println("${this.estanFuertementeConectados(primerVertice,segundoVertice)}")
                     if(primerVertice == a.segundoV && segundoVertice == a.primerV){
                     indentificador1=this.obtenerIdentificadorCFC(segundoVertice)
                     indentificador2=this.obtenerIdentificadorCFC(primerVertice)
                     var newArco=Arco(indentificador1,indentificador2)
                     setArcos.add(newArco)
-                   // grafoConexo.agregarArco(newArco)
-                  }*/
+                   
+                  }
                    
                   if(segundoVertice == a.segundoV && primerVertice == a.primerV){
                     indentificador1=this.obtenerIdentificadorCFC(primerVertice)
@@ -137,15 +137,16 @@ public class CFC(val g: GrafoDirigido) {
                     var newArco=Arco(indentificador1,indentificador2)
                     
                     setArcos.add(newArco)
-                   // grafoConexo.agregarArco(newArco)
+                   
                   }
                }
              }
             }
           }
-        
-        var setArcosFiltrada = setArcos.toHashSet()
         var listaArcosFiltrada = setArcos.distinctBy {listOf(it.primerV,it.segundoV)}
+        listaArcosFiltrada.forEach{a ->
+          grafoConexo.agregarArco(a)
+        }
 
           
         
