@@ -9,7 +9,7 @@ import java.util.Queue
    Con la creación de la instancia, se ejecuta el algoritmo DFS
    desde todos los vértices del grafo
 */
-public class BusquedaEnProfundidad(val g: Grafo) {
+public class BusquedaEnProfundidad(val g: Grafo, val orden: MutableList<Int> = mutableListOf<Int>()) {
     
     var listaDeVertices :MutableList<MutableMap<String, Any?>> = mutableListOf()
     var numVertices = g.obtenerNumeroDeVertices()
@@ -33,13 +33,22 @@ public class BusquedaEnProfundidad(val g: Grafo) {
         tiempo = 0
         
        // println("Esta es la lista de vertices con un mutableMaP :  ${this.listaDeVertices} \n")
-       
-         for (i in 0..numVertices-1 ){
+       if (orden.size > 0) {
+           for (i in 0..numVertices-1){
+               if(listaDeVertices.get(orden[i]).get("color") == Color.BLANCO){
+                   dfsVisit(g,orden[i])
+               }
+           }
+           println("Esta es la lista de vertices con un mutableMaP :  ${this.listaDeVertices} \n")
+       } else {
+        for (i in 0..numVertices-1 ){
         if (listaDeVertices.get(i).get("color") == Color.BLANCO) {
             dfsVisit(g,i)
             }
         }
          println("Esta es la lista de vertices con un mutableMaP :  ${this.listaDeVertices} \n")
+       }
+        
     }
 
      

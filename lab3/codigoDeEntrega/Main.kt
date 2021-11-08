@@ -27,11 +27,16 @@ fun main(args: Array<String>) {
     var grafoDirigidoOrdenTopologicoPrueba = OrdenTopologico(grafoDirigidoPrueba2)
     println("Tiene ciclos ?? : ${grafoDirigidoOrdenTopologicoPrueba.esUnGrafoAciclicoDirecto()}\n")
     println("Obtener orden Topologico : ${grafoDirigidoOrdenTopologicoPrueba.obtenerOrdenTopologico()}\n")
-
+   println("Prueba de CICLODIGRAFO : \n")
    var grafoDirigidoPrueba3 = GrafoDirigido("arcoCiclo.txt",false)
    var grafoDirigidoCicloDigrafo = CicloDigrafo(grafoDirigidoPrueba3)
     println("Tiene ciclos ?? : ${grafoDirigidoCicloDigrafo.existeUnCiclo()}\n")
     println("Obtener el camino del ciclo : ${grafoDirigidoCicloDigrafo.cicloEncontrado()}\n")
+    println("Prueba de CFC : \n")
+    var grafoCFC = CFC(grafoDirigidoPrueba3)
+    println("Tiene ciclos ?? : ${grafoCFC.estanFuertementeConectados(1,2)}\n")
+    println("Obtener La lista CFC del grafo : ${grafoCFC.obternerCFC()}\n")
+    println("Obtener la cantidad de componentes fuertemente Conexas : ${grafoCFC.numeroDeCFC()}\n")
     
   
    
