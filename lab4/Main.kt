@@ -25,6 +25,12 @@ fun main(args: Array<String>) {
     println("Prueba de encontrar conjunto 8 de conjuntosDisjuntos : ${conjuntosDisjuntosPrueba.encontrarConjunto(8)}")
     println("Prueba de encontrar conjunto 9 de conjuntosDisjuntos : ${conjuntosDisjuntosPrueba.encontrarConjunto(9)}")
     println("Prueba de numero de conjuntos de conjuntosDisjuntos : ${conjuntosDisjuntosPrueba.numConjuntosDisjuntos()}")
+    var cojuntosDisjuntos = ComponentesConexasCD(grafoNoDirigidoPrueba)
+    println("PRUEBAS DE COMPONENTES CONEXAS CD :    \n")
+    println("Estan 0 y 5 en la misma componente Conexa?? :  ${cojuntosDisjuntos.estanMismaComponente(7,2)}  \n")
+    println("Cantidad de componentes Conexas :  ${cojuntosDisjuntos.numeroDeComponentesConexas()}  \n")
+    println("Obtener indentificador de la componente conexa, que posee al vertice 8 :  ${cojuntosDisjuntos.obtenerComponente(2)}  \n")
+    println("Vertices que componente a la componentes conexa de identificador 2 :  ${cojuntosDisjuntos.numVerticesDeLaComponente(0)}  \n")
 
 
 }

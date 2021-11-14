@@ -11,12 +11,14 @@ package ve.usb.grafoLib
 public class ConjuntosDisjuntos(val n: Int) {
     var listaDeConjuntos:MutableList<MutableList<Int?>> = mutableListOf()
     var listaDeRepresentantes = mutableListOf<Int>()
+    var listaDeRepresentantesNoNulos = mutableListOf<Int>()
     var vertices  = mutableListOf<Int>()
-
+    var conjuntosNoNulos :MutableList<MutableList<Int?>> = mutableListOf()
     init {
         for (i in 0..n-1) {
         this.listaDeConjuntos.add(mutableListOf(i))
         this.listaDeRepresentantes.add(i)
+        this.listaDeRepresentantesNoNulos.add(i)
         this.vertices.add(i)
         } 
 
@@ -105,9 +107,26 @@ public class ConjuntosDisjuntos(val n: Int) {
      Retorna el número de conjuntos disjuntos acutales que tiene la estructura de conjuntos disjuntos.
      */
    fun numConjuntosDisjuntos() : Int {
-       var conjuntosNoNulos = this.listaDeConjuntos
-       conjuntosNoNulos.removeAll(listOf(mutableListOf(null)))
+       this.conjuntosNoNulos = this.listaDeConjuntos
+      this.conjuntosNoNulos.removeAll(listOf(mutableListOf(null)))
        println("Lista de cojuntosNoNulos : $conjuntosNoNulos")
-       return conjuntosNoNulos.size
+       return this.conjuntosNoNulos.size
+   }
+
+   fun listaComponenteConexas():MutableList<MutableList<Int?>> {
+        this.conjuntosNoNulos = this.listaDeConjuntos
+        this.conjuntosNoNulos.removeAll(listOf(mutableListOf(null)))
+       return this.conjuntosNoNulos
+   }
+
+   fun listaDeRepresentantesFinal():MutableList<Int> {
+       this.vertices.forEach{v ->
+        this.conjuntosNoNulos.forEachIndexed{ index, c ->
+            if(c.contains(v)) {
+                this.listaDeRepresentantesNoNulos.set(v,index)
+            }
+         }
+       }
+       return this.listaDeRepresentantesNoNulos
    }
 }
