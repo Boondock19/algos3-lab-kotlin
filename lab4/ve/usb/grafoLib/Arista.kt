@@ -33,7 +33,7 @@ public class Arista(val v: Int,val u: Int, val peso: Double =0.0) : Comparable<A
 
      */
     override fun toString() : String {
-        return "($primerV,$segundoV)"
+        return "($primerV,$segundoV,$aristaPeso)"
     // Completar
     }
 
